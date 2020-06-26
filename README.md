@@ -1,3 +1,21 @@
+## My Notes
+Generating random integers in a range:
+The Math.random() method returns a random number between 0 and 1.
+the possible values could range from 0.0 to 0.999999999999...
+
+...which you can then scale... To get a usable range of values you will need to multiply by a range. For example Math.random() * 6 would generate numbers from 0.0 to 5.999...
+
+Often you will want a whole number. Since Math.random() generates a floating point number you will need to use some of the other Math functions to convert the floating point values into Integers. Math.round(), Math.floor(), Math.ceil() among others can do that.
+
+The index of any element in an array is always an integer starting at 0 up to the length of the array - 1.
+
+function random(n) {
+  return Math.floor(Math.random() * n)
+}
+This function returns a whole number from 0 to n - 1.
+Math.floor(n) rounds the value n down to a whole number. 
+---------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
