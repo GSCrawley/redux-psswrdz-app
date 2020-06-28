@@ -1,3 +1,5 @@
+import { connect } from 'react-redux'
+import { addPassword } from './actions'
 import React, { Component } from 'react'
 import "./password.css" 
 
@@ -5,7 +7,9 @@ import "./password.css"
 class Password extends Component {
   constructor(props) {
     super(props)
-    this.state = { password: 'p@ssw0rd', name:'' }
+    this.state = { password: 'p@ssw0rd', 
+    name:'My Password' 
+    }
   }
 
   generatePassword() {
@@ -29,29 +33,46 @@ class Password extends Component {
       <div>
         {/* <div>{password}</div> */}
         <div> 
-          <input
-            onChange={(e) => {this.setState({ password: e.target.value })}}
-            value={password}
-          />
+        <input
+          value={this.state.name}
+          onChange={(e) => this.setState({ name: e.target.value })}
+        />
+        <input
+          onChange={(e) => {this.setState({ password: e.target.value })}}
+          value={password}
+        />
         </div>
         <div> 
-          <input
-            onChange={(e) => {this.setState({ name: e.target.value })}}
-            value={name}
-          />
+        <input
+          onChange={(e) => {this.setState({ name: e.target.value })}}
+          value={name}
+        />
         </div>
         <div>
           <button onClick={(e) => {
             this.generatePassword()
           }}>Generate</button>
         </div>
-        {/* <label class="container">Hyphenate?
-    <input type="checkbox" checked="checked">
-    <span class="checkmark"></span>
-        </label> */}
+        <div>
+          <button onClick={(e) => {
+            this.props.addPassword(this.state.name, this.state.password)
+            }}>Save</button>
+        </div>
       </div>
     )
-  }
-}
+    const mapStateToProps = (state) => {
+      return {
+    
+      }
+    }
+    
+    const mapDispatchToProps = () => {
+      return {
+        addPassword
+      }
+    }
+ 
+  };
 
-export default Password
+export default connect(mapStateToProps, mapDispatchToProps())(Password)
+
