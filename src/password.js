@@ -13,7 +13,7 @@ class Password extends Component {
   }
 
   generatePassword() {
-    const password = Math.random().toString(36).replace(/[^a-z^A-Z^0-9]+/g, '').substr(0-9); 
+    const password     = Math.random().toString(36).replace(/[^a-z^A-Z^0-9]+/g, '').substr(0-9); 
     let hyphenPass = ""
     for(let i = 0; i < password.length; i++){
       if (i % 3 === 0 && i !== 0){
@@ -21,7 +21,6 @@ class Password extends Component {
       }
       hyphenPass += password[i]
     }
-    console.log("generate password", password, hyphenPass)
     // this.setState({password: password})
     this.setState({password:hyphenPass, name:''})
 
@@ -30,8 +29,6 @@ class Password extends Component {
   render() {
     const { password, name } = this.state
     return (
-      <div>
-        {/* <div>{password}</div> */}
         <div> 
         <input
           value={this.state.name}
@@ -41,38 +38,42 @@ class Password extends Component {
           onChange={(e) => {this.setState({ password: e.target.value })}}
           value={password}
         />
-        </div>
-        <div> 
         <input
           onChange={(e) => {this.setState({ name: e.target.value })}}
           value={name}
         />
-        </div>
-        <div>
+        
           <button onClick={(e) => {
             this.generatePassword()
           }}>Generate</button>
-        </div>
-        <div>
+    
+        
           <button onClick={(e) => {
+            console.log(this.state.name, this.state.password)
             this.props.addPassword(this.state.name, this.state.password)
             }}>Save</button>
-        </div>
       </div>
     )
-    const mapStateToProps = (state) => {
-      return {
-    
+
+          }
+
+          }
+          
+
+
+
+const mapStateToProps = (state) => {
+  return {
+      addPassword
       }
     }
     
-    const mapDispatchToProps = () => {
+const mapDispatchToProps = () => {
       return {
         addPassword
       }
     }
- 
-  };
+  
 
 export default connect(mapStateToProps, mapDispatchToProps())(Password)
 
