@@ -8,17 +8,15 @@ import PasswordList from './password-list';
 
 const store = createStore(reducers)
 
-
 class App extends Component {
   render() {
     return (
         <Provider store={store}>
           <div className="App">
             <Password />
-            <PasswordList />
-        </div>
-
-      </Provider>
+            <PasswordList />  
+        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        </Provider>
     );
   }
 }

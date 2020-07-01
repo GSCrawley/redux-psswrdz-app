@@ -2,13 +2,15 @@ import { connect } from 'react-redux'
 import { addPassword } from './actions'
 import React, { Component } from 'react'
 import "./password.css" 
-
+import zxcvbn from 'zxcvbn'
 
 class Password extends Component {
   constructor(props) {
     super(props)
-    this.state = { password: 'p@ssw0rd', 
-    name:'My Password' 
+    this.state = { 
+      password: 'p@ssw0rd', 
+      name:'My Password',
+      strength: '0'
     }
   }
 
@@ -28,6 +30,8 @@ class Password extends Component {
 
   render() {
     const { password, name } = this.state
+    const passwordStrength = zxcvbn(this.state.password)
+    console.log(passwordStrength)
     return (
         <div> 
         <input
@@ -38,6 +42,7 @@ class Password extends Component {
           onChange={(e) => {this.setState({ password: e.target.value })}}
           value={password}
         />
+        <span>strength:{passwordStrength.score}</span>
         <input
           onChange={(e) => {this.setState({ name: e.target.value })}}
           value={name}
@@ -56,11 +61,15 @@ class Password extends Component {
     )
 
           }
+        }
+      
+// function checkPasswordStrength(password) {
+//   const passwordStrength = zxcvbn(this.state.password)
+//   return passwordStrength(password);
+     
+// }
 
-          }
-          
-
-
+// console.log(checkPasswordStrength)
 
 const mapStateToProps = (state) => {
   return {
@@ -74,6 +83,5 @@ const mapDispatchToProps = () => {
       }
     }
   
-
 export default connect(mapStateToProps, mapDispatchToProps())(Password)
-
+  
