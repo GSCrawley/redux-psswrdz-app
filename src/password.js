@@ -48,12 +48,14 @@ class Password extends Component {
           value={name}
         />
         
-          <button onClick={(e) => {
+          <button className ='button'
+          onClick={(e) => {
             this.generatePassword()
           }}>Generate</button>
     
         
-          <button onClick={(e) => {
+          <button className ='button'
+          onClick={(e) => {
             console.log(this.state.name, this.state.password)
             this.props.addPassword(this.state.name, this.state.password)
             }}>Save</button>
